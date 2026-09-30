@@ -1,57 +1,70 @@
 [
   {
     "id": "coins_10",
-    "name": "10 Coins",
-    "coinCount": 10,
-    "bonusCoins": 0,
-    "priceFormatted": "$0.99",
-    "priceAmountMicros": 990000,
-    "tag": "Starter",
-    "isPopular": false,
-    "isBestValue": false
+    "title": "10 Coins",
+    "coins": 10,
+    "price": "$0.99",
+    "tag": "Starter"
   },
   {
     "id": "coins_20",
-    "name": "20 Coins",
-    "coinCount": 20,
-    "bonusCoins": 0,
-    "priceFormatted": "$1.99",
-    "priceAmountMicros": 1990000,
-    "tag": null,
-    "isPopular": false,
-    "isBestValue": false
+    "title": "20 Coins",
+    "coins": 20,
+    "price": "$1.99"
   },
   {
     "id": "coins_30",
-    "name": "30 Coins",
-    "coinCount": 30,
-    "bonusCoins": 0,
-    "priceFormatted": "$2.99",
-    "priceAmountMicros": 2990000,
+    "title": "30 Coins",
+    "coins": 30,
+    "price": "$2.99",
     "tag": "Popular",
-    "isPopular": true,
-    "isBestValue": false
+    "isPopular": true
+  },
+  {
+    "id": "coins_40",
+    "title": "40 Coins",
+    "coins": 40,
+    "price": "$3.99"
   },
   {
     "id": "coins_50",
-    "name": "50 Coins",
-    "coinCount": 50,
-    "bonusCoins": 10,
-    "priceFormatted": "$4.99",
-    "priceAmountMicros": 4990000,
-    "tag": null,
-    "isPopular": false,
-    "isBestValue": false
+    "title": "50 Coins",
+    "coins": 50,
+    "price": "$4.99",
+    "tag": "Popular",
+    "isPopular": true
+  },
+  {
+    "id": "coins_60",
+    "title": "60 Coins",
+    "coins": 60,
+    "price": "$5.99"
+  },
+  {
+    "id": "coins_70",
+    "title": "70 Coins",
+    "coins": 70,
+    "price": "$6.99"
+  },
+  {
+    "id": "coins_80",
+    "title": "80 Coins",
+    "coins": 80,
+    "price": "$7.99"
+  },
+  {
+    "id": "coins_90",
+    "title": "90 Coins",
+    "coins": 90,
+    "price": "$8.99"
   },
   {
     "id": "coins_100",
-    "name": "100 Coins",
-    "coinCount": 100,
+    "title": "100 Coins",
+    "coins": 100,
+    "price": "$9.99",
     "bonusCoins": 30,
-    "priceFormatted": "$9.99",
-    "priceAmountMicros": 9990000,
     "tag": "Best Value",
-    "isPopular": false,
     "isBestValue": true
   }
 ]
