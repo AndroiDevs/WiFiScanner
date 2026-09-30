@@ -28,7 +28,6 @@
             line-height: 1.6;
         }
 
-        /* Nav Header */
         header {
             background-color: var(--surface-color);
             border-bottom: 1px solid var(--border-color);
@@ -77,7 +76,6 @@
             color: var(--primary-rose);
         }
 
-        /* Document Body */
         main {
             padding: 60px 0;
         }
@@ -121,7 +119,6 @@
             font-size: 15px;
         }
 
-        /* Footer */
         footer {
             background-color: #020617;
             padding: 40px 20px;
@@ -151,34 +148,41 @@
 
             <p>At WiFi Scanner, we take your privacy extremely seriously. This Privacy Policy describes how we collect, use, and process your data when you use our mobile application and services.</p>
 
-            <h2>1. Information We Collect</h2>
-            <p><strong>Device Sensors & Camera:</strong> We request camera permissions strictly to scan WiFi QR codes dynamically and locally on your device. We never transmit camera footage or imagery to remote servers.</p>
-            <p><strong>WiFi Connection Information:</strong> Our app stores your connected networks and scanned configurations locally in an offline Room SQLite database. This data never leaves your device.</p>
-            <p><strong>In-App Purchases:</strong> All payments, transactions, and purchases of coins are securely processed entirely through Google Play Services Billing API. We do not store or process payment card details.</p>
+            <h2>1. Information We Access and Process</h2>
+            <p><strong>Camera & Live Scanning:</strong> We request camera permission exclusively to scan Wi-Fi QR codes in real time on your device. Video frames are analyzed in temporary memory by the on-device barcode reader and are immediately discarded. We never record, save, or transmit camera images or video to external servers.</p>
+            <p><strong>Gallery Photos:</strong> If you choose to scan a Wi-Fi QR code from an image stored on your device, the photo is accessed strictly on-demand using Android's system photo picker. The image is processed locally on your device and is never uploaded or shared.</p>
+            <p><strong>Local Wi-Fi Network Storage:</strong> The app saves your scanned Wi-Fi network names (SSID), security types, and passwords locally in a secure, on-device SQLite database (Room). This data remains strictly on your device and is never uploaded to any remote server or cloud account.</p>
+            <p><strong>In-App Purchases:</strong> All coin purchases and transactions are processed securely and directly by Google Play Billing. We do not collect, view, or store your credit card or financial information.</p>
 
             <h2>2. How We Use Information</h2>
-            <p>The information we collect is used solely to facilitate WiFi connections, store scanning history, and verify active premium coin purchases via the official Google Play infrastructure.</p>
+            <p>All accessed permissions and data are used solely to facilitate instant Wi-Fi connections, maintain your saved network history, and enable optional password unlocks via Google Play purchases.</p>
 
             <h2>3. Third-Party Services</h2>
-            <p>We integrate official Google APIs to verify purchases:
+            <p>The app interacts with official Google Play services:
                 <ul>
-                    <li>Google Play Billing Services (to handle orders safely and securely).</li>
+                    <li><strong>Google Play In-App Billing:</strong> Used to process purchases and manage virtual coin transactions securely under Google's standard privacy policies.</li>
                 </ul>
             </p>
 
-            <h2>4. Security</h2>
-            <p>Your local network passwords and details are encrypted or securely compiled locally in your sandbox databases. No external network transmission is attempted except during essential Billing operations initiated by Google Play Services.</p>
+            <h2>4. Data Retention & User Deletion Rights</h2>
+            <p>Because all Wi-Fi network records and scan histories are stored locally on your device, you have full control over your data at all times. You can delete individual network entries directly within the Saved Wi-Fi history screen, or erase all app data at any time through your Android device's Settings > Apps > WiFi Scanner > Clear Storage.</p>
 
-            <h2>5. Changes to This Policy</h2>
-            <p>We may update this Privacy Policy from time to time. We encourage users to check this page periodically for updates.</p>
+            <h2>5. Children's Privacy</h2>
+            <p>Our application is a general-purpose utility tool and is not intended for or directed at children under the age of 13. We do not knowingly collect personal information from children.</p>
 
-            <h2>6. Contact Us</h2>
-            <p>If you have any questions or queries regarding your privacy under WiFi Scanner, contact us via email at rifatahmedsajeeb@gmail.com.</p>
+            <h2>6. Security</h2>
+            <p>All network credentials and app settings reside within the secure private application sandbox provided by the Android operating system. No external network communication occurs other than standard Google Play purchase flows and public store package catalog queries.</p>
+
+            <h2>7. Changes to This Policy</h2>
+            <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated revision date.</p>
+
+            <h2>8. Contact Us</h2>
+            <p>If you have any questions or concerns regarding this Privacy Policy or our practices, please contact us by email at <a href="mailto:androidevofficial@gmail.com" style="color: var(--primary-rose); text-decoration: none;">rifatahmedsajeeb@gmail.com</a>.</p>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 WiFi Scanner Inc. All rights reserved.</p>
+        <p>&copy; 2026 WiFi Scanner. All rights reserved.</p>
     </footer>
 
 </body>
