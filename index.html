@@ -449,7 +449,7 @@
             </div>
             <ul class="nav-links">
                 <li><a href="#features">Features</a></li>
-                <li><a href="#remote">Remote Catalog</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
                 <li><a href="terms-and-conditions.html">Terms</a></li>
                 <li><a href="privacy-policy.html">Privacy Policy</a></li>
                 <li><a class="btn-premium" href="#download">Get App</a></li>
@@ -469,42 +469,14 @@
             </div>
         </div>
         <div class="hero-preview">
-            <!-- Simulated Android Phone Screen displaying the Dynamic Coin Shop -->
+            <!-- Simulated Android Phone Screen displaying App Preview Screenshot -->
             <div class="phone-mockup">
-                <div class="phone-header">
-                    <span>9:41 AM</span>
-                    <span>🔋 100%</span>
-                </div>
-                <div class="phone-screen">
-                    <div style="font-size: 16px; font-weight: 800; color: white;">🪙 Dynamic Coin Store</div>
-                    <div style="font-size: 11px; color: var(--text-secondary); margin-bottom: 10px;">Loaded dynamically from Packages.json</div>
-
-                    <div class="phone-card">
-                        <div class="package-title">
-                            <span>Starter Pack</span>
-                            <span class="package-badge">Starter</span>
-                        </div>
-                        <div class="package-coins">10 Coins</div>
-                        <div style="font-size: 11px; color: #10b981; margin-top: 6px; font-weight: 600;">$0.99</div>
-                    </div>
-
-                    <div class="phone-card" style="border-color: var(--primary-rose);">
-                        <div class="package-title">
-                            <span>Popular Tier</span>
-                            <span class="package-badge" style="background-color: var(--primary-gold);">Popular</span>
-                        </div>
-                        <div class="package-coins">30 Coins</div>
-                        <div style="font-size: 11px; color: #10b981; margin-top: 6px; font-weight: 600;">$2.99</div>
-                    </div>
-
-                    <div class="phone-card">
-                        <div class="package-title">
-                            <span>Best Value Pack</span>
-                            <span class="package-badge" style="background-color: var(--success-green);">Best Value</span>
-                        </div>
-                        <div class="package-coins">100 Coins</div>
-                        <div style="font-size: 11px; color: #10b981; margin-top: 6px; font-weight: 600;">$9.99</div>
-                    </div>
+                <!-- Place your actual app preview screenshot here. Simply name it app_preview.png or update the src attribute! -->
+                <img src="app_preview.png" alt="App Preview Screen" onerror="this.style.display='none'; document.getElementById('preview-placeholder').style.display='flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 28px;">
+                <div id="preview-placeholder" style="display: none; width: 100%; height: 100%; flex-direction: column; justify-content: center; align-items: center; background-color: var(--surface-color); color: var(--text-secondary); padding: 20px; text-align: center; border-radius: 28px;">
+                    <span style="font-size: 48px; margin-bottom: 16px;">📱</span>
+                    <span style="font-weight: bold; color: white;">App Preview Image</span>
+                    <span style="font-size: 12px; margin-top: 8px;">Place 'app_preview.png' in this folder to display your custom screenshot here!</span>
                 </div>
             </div>
         </div>
@@ -535,40 +507,43 @@
         </div>
     </section>
 
-    <!-- Remote Catalog Configuration Instructions -->
-    <section class="remote-details" id="remote">
+    <!-- How It Works Section -->
+    <section class="remote-details" id="how-it-works">
         <div class="remote-container">
             <div class="remote-text">
-                <div class="badge">⚙️ Advanced Remote Config</div>
-                <h2 style="font-size: 34px; font-weight: 800; margin-bottom: 20px;">Dynamic Packages Setup</h2>
-                <p style="color: var(--text-secondary); margin-bottom: 24px;">The application's Shop view loads directly from your remote package file. To customize product names, pricing structure, badges, or tiers, simply edit and upload your customized JSON configuration directly to your repository!</p>
-                <a href="https://androidevs.github.io/WiFiScanner/Store/Package.json" target="_blank" class="btn btn-secondary" style="font-size: 14px;">View Remote JSON Link 🔗</a>
+                <div class="badge">📖 Simple Guide</div>
+                <h2 style="font-size: 34px; font-weight: 800; margin-bottom: 20px;">How It Works</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 30px;">WiFi Scanner makes scanning and managing wireless network connections secure, dynamic, and easy. Follow three simple steps to start scanning:</p>
+                
+                <div style="display: flex; flex-direction: column; gap: 24px;">
+                    <div style="display: flex; gap: 16px;">
+                        <div style="width: 36px; height: 36px; border-radius: 50%; background-color: var(--primary-rose); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">1</div>
+                        <div>
+                           <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 4px;">Scan WiFi QR Codes</h4>
+                           <p style="color: var(--text-secondary); font-size: 14px;">Open the built-in scanner to instantly read the connection configuration, SSID, and security type directly from any WiFi QR code.</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 16px;">
+                        <div style="width: 36px; height: 36px; border-radius: 50%; background-color: var(--primary-rose); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">2</div>
+                        <div>
+                           <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 4px;">Connect or Store Locally</h4>
+                           <p style="color: var(--text-secondary); font-size: 14px;">Connect instantly to the wireless access point or save the network information securely to your local on-device database.</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 16px;">
+                        <div style="width: 36px; height: 36px; border-radius: 50%; background-color: var(--primary-rose); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">3</div>
+                        <div>
+                           <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 4px;">Manage Coin Packages</h4>
+                           <p style="color: var(--text-secondary); font-size: 14px;">Acquire secure dynamic coin packages through the Google Play Store billing interface to unlock advanced premium utility features like offline password sharing.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="remote-code">
-<!-- Code Block Display -->
-<pre>
-[
-  {
-    "id": "coins_10",
-    "name": "10 Coins",
-    "coinCount": 10,
-    "bonusCoins": 0,
-    "priceFormatted": "$0.99",
-    "priceAmountMicros": 990000,
-    "tag": "Starter"
-  },
-  {
-    "id": "coins_30",
-    "name": "30 Coins",
-    "coinCount": 30,
-    "bonusCoins": 0,
-    "priceFormatted": "$2.99",
-    "priceAmountMicros": 2990000,
-    "tag": "Popular",
-    "isPopular": true
-  }
-]
-</pre>
+            
+            <div class="remote-code" style="display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: var(--surface-color); padding: 40px; text-align: center; border-radius: 24px; border: 1px solid var(--border-color);">
+                <span style="font-size: 56px; margin-bottom: 16px;">🚀</span>
+                <h3 style="color: white; font-size: 22px; font-weight: bold; margin-bottom: 10px;">Quick & Simple Setup</h3>
+                <p style="color: var(--text-secondary); font-size: 14px; max-width: 320px; line-height: 1.6;">No complex credentials or network configurations required. Simply point, scan, and enjoy high-speed connections instantly.</p>
             </div>
         </div>
     </section>
