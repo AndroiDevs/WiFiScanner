@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Successfully Purchased - Order Confirmed</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            brand: {
+              emerald: '#10b981',
+              neon: '#00ff87',
+              mint: '#34d399',
+              gold: '#E5C158',
+              darkBg: '#05080E',
+            }
+          },
+          animation: {
+            'glow-pulse': 'glow 3.5s ease-in-out infinite alternate',
+            'float-slow': 'float 5s ease-in-out infinite',
+            'pop-in': 'popIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            'bounce-once': 'bounceOnce 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.2s forwards',
+          },
+          keyframes: {
+            glow: {
+              '0%': { opacity: '0.25', filter: 'blur(30px)' },
+              '100%': { opacity: '0.65', filter: 'blur(50px)' }
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' }
+            },
+            popIn: {
+              '0%': { opacity: '0', transform: 'scale(0.85) translateY(24px)' },
+              '100%': { opacity: '1', transform: 'scale(1) translateY(0)' }
+            },
+            bounceOnce: {
+              '0%': { transform: 'scale(1)' },
+              '50%': { transform: 'scale(1.15)' },
+              '100%': { transform: 'scale(1)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Fullscreen canvas for falling ribbons & confetti */
+    #confettiCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* Prominent Animated Green Checkmark (Tick) CSS */
+    .checkmark-svg {
+      width: 90px;
+      height: 90px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .checkmark-circle {
+      stroke-dasharray: 166;
+      stroke-dashoffset: 166;
+      stroke-width: 3.5;
+      stroke-miterlimit: 10;
+      stroke: #10b981;
+      fill: none;
+      animation: strokeCircle 0.8s cubic-bezier(0.65, 0, 0.45, 1) 0.1s forwards;
+    }
+
+    .checkmark-check {
+      transform-origin: 50% 50%;
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      stroke-width: 4.5;
+      stroke: #00ff87;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      animation: strokeCheck 0.45s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+    }
+
+    @keyframes strokeCircle {
+      0% { stroke-dashoffset: 166; }
+      100% { stroke-dashoffset: 0; }
+    }
+
+    @keyframes strokeCheck {
+      0% { stroke-dashoffset: 48; }
+      100% { stroke-dashoffset: 0; }
+    }
+
+    /* Glassmorphism styling */
+    .glass-card {
+      background: rgba(13, 20, 32, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Glow backdrop for green check icon */
+    .green-glow-badge {
+      box-shadow: 0 0 45px -5px rgba(16, 185, 129, 0.4), inset 0 0 25px rgba(0, 255, 135, 0.15);
+    }
+
+    /* Toast Notification Animation */
+    .toast-enter {
+      transform: translateY(100%) scale(0.9);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .toast-show {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="bg-[#05080E] text-slate-100 font-sans min-h-screen flex flex-col justify-between relative overflow-x-hidden selection:bg-emerald-500 selection:text-slate-950">
+
+  <!-- Ambient background lighting -->
+  <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[700px] pointer-events-none z-0 overflow-hidden">
+    <div class="absolute -top-[100px] left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-gradient-to-tr from-emerald-600/30 via-teal-500/20 to-cyan-500/10 rounded-full blur-[140px] animate-glow-pulse"></div>
+    <div class="absolute top-[300px] left-1/4 w-[350px] h-[350px] bg-emerald-500/10 rounded-full blur-[100px]"></div>
+  </div>
+
+  <!-- Fullscreen Falling Ribbon & Confetti Canvas Overlay -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Main Content Container -->
+  <main class="relative z-20 flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 w-full flex flex-col justify-center">
+    
+    <!-- Hero Header with Animated Green Tick -->
+    <div class="text-center space-y-6 mb-12 animate-pop-in">
+      
+      <!-- PROMINENT ANIMATED GREEN TICK / CHECKMARK -->
+      <div class="relative inline-flex justify-center items-center my-2">
+        <!-- Glowing Ring Backing -->
+        <div class="absolute w-36 h-36 bg-emerald-500/20 rounded-full blur-2xl animate-pulse"></div>
+        
+        <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-slate-950/90 border-2 border-emerald-500/40 green-glow-badge flex items-center justify-center relative z-10 animate-bounce-once shadow-2xl">
+          <svg class="checkmark-svg" viewBox="0 0 52 52">
+            <circle class="checkmark-circle" cx="26" cy="26" r="23" fill="none"/>
+            <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Main Headline & Order Confirmation Subtitle -->
+      <div class="space-y-3">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-widest">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+          </svg>
+          <span>Order Confirmed & Payment Successful</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-serif font-semibold text-white tracking-tight">
+          Successfully Purchased!
+        </h1>
+        <p class="text-slate-400 text-sm sm:text-base max-w-xl mx-auto font-light leading-relaxed">
+          Thank you for your order. Your transaction has been approved and processed.
+        </p>
+      </div>
+    </div>
+
+
+    <!-- Action Buttons Row -->
+    <div class="space-y-4 text-center animate-pop-in" style="animation-delay: 0.35s;">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+
+        <!-- Return Link -->
+        <a href="https://GPCBuySell.Online" class="w-full sm:w-auto px-6 py-4 rounded-xl bg-transparent hover:bg-white/5 text-slate-400 hover:text-white font-medium text-sm transition-all duration-300">
+          Return to Homepage &rarr;
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // Canvas Ribbon & Confetti Engine
+    const canvas = document.getElementById('confettiCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    // Color Palette: Emerald, Mint, Gold, Cyan, Copper, Rose
+    const colors = [
+      '#10B981', // Emerald Green
+      '#00FF87', // Neon Green
+      '#34D399', // Mint
+      '#E5C158', // Luxury Gold
+      '#06B6D4', // Cyan
+      '#F43F5E', // Rose Accent
+      '#FFFFFF'  // Pure White Shiny
+    ];
+
+    class SatinRibbon {
+      constructor(isBurst = false) {
+        this.reset(isBurst);
+      }
+
+      reset(isBurst = false) {
+        this.x = Math.random() * width;
+        this.y = isBurst ? Math.random() * height * 0.5 : -30 - Math.random() * 150;
+        
+        // Ribbon or Confetti Flag
+        this.isRibbon = Math.random() > 0.35; // 65% Satin Ribbons, 35% Confetti
+        this.size = Math.random() * 8 + 6;
+        this.length = Math.random() * 30 + 18; // Ribbon length
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+        
+        // Physics & Motion
+        this.vx = (Math.random() - 0.5) * 2;
+        this.vy = Math.random() * 2.2 + 1.8;
+        this.rotation = Math.random() * Math.PI * 2;
+        this.rotationSpeed = (Math.random() - 0.5) * 0.08;
+        this.oscillation = Math.random() * Math.PI * 2;
+        this.oscillationSpeed = Math.random() * 0.04 + 0.015;
+        this.opacity = Math.random() * 0.8 + 0.2;
+      }
+
+      update() {
+        this.y += this.vy;
+        this.x += Math.sin(this.oscillation) * 1.2 + this.vx;
+        this.oscillation += this.oscillationSpeed;
+        this.rotation += this.rotationSpeed;
+
+        // Loop back to top once fallen past bottom screen
+        if (this.y > height + 50) {
+          this.reset(false);
+        }
+      }
+
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation);
+        ctx.globalAlpha = this.opacity;
+
+        if (this.isRibbon) {
+          // Curved Satin Ribbon Strand
+          ctx.beginPath();
+          ctx.strokeStyle = this.color;
+          ctx.lineWidth = this.size / 2.2;
+          ctx.lineCap = 'round';
+          
+          ctx.moveTo(-this.length / 2, 0);
+          ctx.quadraticCurveTo(
+            0, 
+            Math.sin(this.oscillation * 2.5) * 12, 
+            this.length / 2, 
+            0
+          );
+          ctx.stroke();
+        } else {
+          // Shiny Rectangular Confetti
+          ctx.fillStyle = this.color;
+          ctx.fillRect(-this.size / 2, -this.size / 4, this.size, this.size / 2);
+        }
+
+        ctx.restore();
+      }
+    }
+
+    // Initialize Particles Pool
+    const particleCount = 110;
+    const particles = [];
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new SatinRibbon(true));
+    }
+
+    // Animation Render Loop
+    function animateConfetti() {
+      ctx.clearRect(0, 0, width, height);
+
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+
+      requestAnimationFrame(animateConfetti);
+    }
+
+    // Re-trigger explosive burst of ribbons
+    function triggerRibbonBurst() {
+      particles.forEach(p => p.reset(true));
+    }
+
+    // Start Confetti loop
+    animateConfetti();
+
+    // Download Toast Trigger
+    function downloadReceipt() {
+      const toast = document.getElementById('toast');
+      toast.classList.add('toast-show');
+      
+      setTimeout(() => {
+        toast.classList.remove('toast-show');
+      }, 3500);
+    }
+  </script>
+
+</body>
+</html>
